@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julia C. Neary — Product Marketing & Commercial Strategy</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #1a1a2e;
+            --dark: #16213e;
+            --accent: #4a6cf7;
+            --accent-light: #e8edff;
+            --warm: #f8f6f3;
+            --text: #2d2d2d;
+            --text-light: #6b6b6b;
+            --border: #e5e5e5;
+            --white: #ffffff;
+            --green: #2d6a4f;
+            --green-light: #f0f7f4;
+            --purple: #5b21b6;
+            --purple-light: #f3f0ff;
+            --orange: #c2410c;
+            --orange-light: #fff7ed;
+            --blue-deep: #1e1b4b;
+            --blue-light: #eef2ff;
+            --teal: #0d9488;
+            --teal-light: #f0fdfa;
+            --sidebar-w: 220px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--warm);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            background: linear-gradient(135deg, #1a1028 0%, #1e1233 40%, #221538 70%, #1a1028 100%);
+            color: white;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(192,132,252,0.10) 0%, transparent 70%);
+            top: -150px;
+            right: -80px;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(192,132,252,0.10) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(236,72,153,0.06) 0%, transparent 40%);
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 0 calc(var(--sidebar-w) + 60px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            color: #f5f0ff;
+            animation: heroNameIn 0.8s ease 0.25s forwards;
+            opacity: 0;
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+
+        .hero h1:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes heroNameIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero .accent-bar {
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f59e0b, #4a6cf7, #ec4899, #a78bfa, #34d399, #f59e0b);
+            background-size: 300% auto;
+            border-radius: 2px;
+            margin-bottom: 24px;
+            animation: barGrow 0.6s ease 0.5s forwards, shimmer 4s linear 1.1s infinite;
+        }
+
+        @keyframes barGrow {
+            to { width: 120px; }
+        }
+
+        .hero .tagline {
+            font-size: 13.5px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: heroSlideIn 0.8s ease 0.1s forwards;
+        }
+
+        .hero .tagline .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin: 0 10px;
+            vertical-align: middle;
+            animation: dotPulse 2.5s ease-in-out infinite;
+        }
+
+        .hero .tagline .dot:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .hero .subtitle {
+            font-size: 17px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            max-width: 680px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: heroSlideIn 0.8s ease 0.55s forwards;
+        }
+
+        @keyframes heroSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---- FLOATING SHAPES ---- */
+        .hero-shapes {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.11;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            background: #f59e0b;
+            top: 15%; right: 12%;
+        }
+
+        .shape-2 {
+            width: 80px; height: 80px;
+            border-radius: 30%;
+            background: #ec4899;
+            bottom: 20%; left: 8%;
+            animation-delay: -5s;
+            animation-duration: 25s;
+        }
+
+        .shape-3 {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: #a78bfa;
+            top: 60%; right: 30%;
+            animation-delay: -10s;
+            animation-duration: 18s;
+        }
+
+        .shape-4 {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            background: #34d399;
+            top: -10%; left: 25%;
+            animation-delay: -7s;
+            animation-duration: 22s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(10px) rotate(-3deg); }
+            75% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        /* ---- LAYOUT: SIDEBAR + MAIN ---- */
+        .page-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            position: relative;
+        }
+
+        /* ---- SIDEBAR NAV ---- */
+        .sidebar {
+            width: var(--sidebar-w);
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .sidebar-inner {
+            position: sticky;
+            top: 32px;
+            padding: 24px 20px 24px 40px;
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+        }
+
+        .sidebar-name {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            padding: 0 12px 16px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .sidebar-name:hover {
+            color: var(--accent);
+        }
+
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-section-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            padding-left: 12px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .sidebar-section-label:hover {
+            opacity: 0.7;
+        }
+
+        .sidebar-section-label.s1 { color: var(--accent); }
+        .sidebar-section-label.s2 { color: var(--green); }
+        .sidebar-section-label.s3 { color: var(--teal); }
+        .sidebar-section-label.s4 { color: var(--purple); }
+
+        .sidebar-link {
+            display: block;
+            font-size: 12.5px;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 5px 12px;
+            border-left: 2px solid transparent;
+            transition: all 0.2s;
+            line-height: 1.5;
+        }
+
+        .sidebar-link:hover {
+            color: var(--text);
+        }
+
+        .sidebar-link.active {
+            color: var(--text);
+            font-weight: 600;
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-link.active.s1 { border-left-color: var(--accent); }
+        .sidebar-link.active.s2 { border-left-color: var(--green); }
+        .sidebar-link.active.s3 { border-left-color: var(--teal); }
+        .sidebar-link.active.s4 { border-left-color: var(--purple); }
+
+        /* ---- MAIN CONTENT ---- */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+            padding: 0 40px 0 20px;
+        }
+
+        /* ---- SECTIONS ---- */
+        .section {
+            padding: 56px 0;
+        }
+
+        .section + .section {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .section-label.blue { color: var(--accent); }
+        .section-label.green { color: var(--green); }
+        .section-label.purple { color: var(--purple); }
+        .section-label.orange { color: var(--orange); }
+        .section-label.teal { color: var(--teal); }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .section-intro {
+            font-size: 16px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        /* ---- PROJECT CARDS ---- */
+        .project {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .project-header {
+            padding: 28px 32px 12px;
+        }
+
+        .project-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .project-header .project-meta {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* ---- PROJECT TAGS ---- */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 8px 32px 4px;
+        }
+
+        .tag {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 12px;
+            letter-spacing: 0.2px;
+        }
+
+        .tag.positioning { background: var(--accent-light); color: var(--accent); }
+        .tag.consumer-insight { background: #fef3c7; color: #92400e; }
+        .tag.competitive { background: #fce7f3; color: #9d174d; }
+        .tag.launch { background: var(--green-light); color: var(--green); }
+        .tag.gtm { background: #ecfdf5; color: #065f46; }
+        .tag.campaign-360 { background: #fff1f2; color: #be123c; }
+        .tag.chef-partnership { background: var(--teal-light); color: var(--teal); }
+        .tag.sales-enablement { background: var(--purple-light); color: var(--purple); }
+        .tag.pricing { background: var(--orange-light); color: var(--orange); }
+        .tag.platform-building { background: #f0f9ff; color: #0369a1; }
+        .tag.innovation { background: #fdf4ff; color: #86198f; }
+        .tag.product-strategy { background: #fff7ed; color: #9a3412; }
+        .tag.press { background: #f5f3ff; color: #6d28d9; }
+        .tag.category { background: #f0fdf4; color: #166534; }
+
+        .project-body {
+            padding: 12px 32px 28px;
+        }
+
+        /* ---- DETAIL GRID ---- */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .detail-box {
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .detail-box.blue-bg { background: var(--blue-light); border-color: #c7d2fe; }
+        .detail-box.green-bg { background: var(--green-light); border-color: #bbf7d0; }
+        .detail-box.purple-bg { background: var(--purple-light); border-color: #ddd6fe; }
+        .detail-box.orange-bg { background: var(--orange-light); border-color: #fed7aa; }
+        .detail-box.teal-bg { background: var(--teal-light); border-color: #99f6e4; }
+        .detail-box.warm-bg { background: var(--warm); border-color: var(--border); }
+
+        .detail-box h4 {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+        }
+
+        .detail-box.blue-bg h4 { color: var(--accent); }
+        .detail-box.green-bg h4 { color: var(--green); }
+        .detail-box.purple-bg h4 { color: var(--purple); }
+        .detail-box.orange-bg h4 { color: var(--orange); }
+        .detail-box.teal-bg h4 { color: var(--teal); }
+
+        .detail-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .detail-box li {
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 3px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .detail-box li::before {
+            content: '\2014';
+            position: absolute;
+            left: 0;
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        /* ---- IMAGE PANELS ---- */
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .image-row.single {
+            grid-template-columns: 1fr;
+        }
+
+        .image-row.triple {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .image-panel {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .image-panel .img-wrap {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+        }
+
+        .image-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Single-column images: don't crop, just show naturally */
+        .image-row.single .image-panel img {
+            object-fit: contain;
+            height: auto;
+            max-height: 400px;
+        }
+
+        /* Paired rows: fixed height so images align */
+        .image-row:not(.single):not(.triple) .img-wrap {
+            height: 280px;
+        }
+
+        /* Product shots & portrait images: contain instead of crop */
+        .img-wrap.contain img {
+            object-fit: contain;
+            background: #f9f9f9;
+        }
+
+        .image-caption {
+            padding: 10px 14px;
+            font-size: 12px;
+            color: var(--text-light);
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        /* ---- METRICS BAR ---- */
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 20px 12px;
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .metric .number {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .metric .number.blue { color: var(--accent); }
+        .metric .number.green { color: var(--green); }
+        .metric .number.purple { color: var(--purple); }
+        .metric .number.orange { color: var(--orange); }
+        .metric .number.teal { color: var(--teal); }
+
+        .metric .label {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ---- LEARNINGS ---- */
+        .learnings {
+            background: var(--warm);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-top: 20px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .learnings.green-border { border-left-color: var(--green); }
+        .learnings.purple-border { border-left-color: var(--purple); }
+        .learnings.orange-border { border-left-color: var(--orange); }
+        .learnings.teal-border { border-left-color: var(--teal); }
+
+        .learnings h4 {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .learnings p, .learnings li {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .learnings ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .learnings li {
+            padding: 3px 0 3px 16px;
+            position: relative;
+        }
+
+        .learnings li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .learnings.green-border li::before { color: var(--green); }
+        .learnings.purple-border li::before { color: var(--purple); }
+        .learnings.orange-border li::before { color: var(--orange); }
+        .learnings.teal-border li::before { color: var(--teal); }
+
+        /* ---- PRESS ROW ---- */
+        .press-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .press-row .press-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text);
+            margin-right: 4px;
+        }
+
+        .press-row a {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+            padding: 5px 14px;
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            transition: all 0.2s;
+            background: rgba(74,108,247,0.06);
+        }
+
+        .press-row a:hover {
+            color: var(--white);
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Section-colored press pills */
+        .s2-press a { color: var(--green); border-color: var(--green); background: rgba(16,185,129,0.06); }
+        .s2-press a:hover { color: var(--white); background: var(--green); }
+        .s3-press a { color: var(--teal); border-color: var(--teal); background: rgba(20,184,166,0.06); }
+        .s3-press a:hover { color: var(--white); background: var(--teal); }
+        .s4-press a { color: var(--purple); border-color: var(--purple); background: rgba(139,92,246,0.06); }
+        .s4-press a:hover { color: var(--white); background: var(--purple); }
+
+        /* ---- CONTRAST CARD ---- */
+        .contrast-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 0;
+            margin: 24px 0;
+            align-items: center;
+        }
+
+        .contrast-card {
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .contrast-vs {
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contrast-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contrast-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ---- FULL WIDTH IMAGE ---- */
+        .full-image {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin: 24px 0;
+        }
+
+        .full-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            .hero-inner { padding: 0 24px; }
+            .sidebar { display: none; }
+            .main-content { padding: 0 24px; }
+
+            /* Show mobile top nav */
+            .mobile-nav { display: block; }
+        }
+
+        @media (min-width: 901px) {
+            .mobile-nav { display: none; }
+        }
+
+        /* ---- MOBILE NAV ---- */
+        .mobile-nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            overflow-x: auto;
+        }
+
+        .mobile-nav-inner {
+            display: flex;
+            gap: 0;
+            padding: 0 20px;
+        }
+
+        .mobile-nav-inner a {
+            padding: 14px 14px;
+            font-size: 11.5px;
+            font-weight: 500;
+            color: var(--text-light);
+            text-decoration: none;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .mobile-nav-inner a:hover,
+        .mobile-nav-inner a.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        @media (max-width: 700px) {
+            .hero { padding: 60px 0 50px; }
+            .hero h1 { font-size: 32px; }
+            .hero-shapes { display: none; }
+            .detail-grid { grid-template-columns: 1fr; }
+            .image-row { grid-template-columns: 1fr; }
+            .image-row.triple { grid-template-columns: 1fr; }
+            .project-header, .project-body, .project-tags { padding-left: 20px; padding-right: 20px; }
+            .contrast-row { grid-template-columns: 1fr; gap: 12px; }
+            .contrast-vs { padding: 8px 0; text-align: center; }
+        }
+
+        /* ---- VISUAL ENERGY ---- */
+
+        /* Project cards: lift on hover */
+        .project {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .project:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        /* Image panels: subtle zoom on hover + click hint */
+        .image-panel img {
+            transition: transform 0.35s ease;
+            cursor: zoom-in;
+        }
+        .image-panel:hover img {
+            transform: scale(1.02);
+        }
+
+        /* ---- FLAVOR CARDS ---- */
+        .flavor-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .flavor-card {
+            padding: 24px 28px;
+            font-size: 13.5px;
+            line-height: 1.7;
+        }
+        .flavor-card.garden {
+            background: #fdf2f2;
+            color: #5c2626;
+        }
+        .flavor-card.wild {
+            background: #9e1b4d;
+            color: rgba(255,255,255,0.9);
+        }
+        .flavor-card h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .flavor-card.garden h5 { color: #3d1515; }
+        .flavor-card.wild h5 { color: #fff; }
+        .flavor-card p {
+            margin-bottom: 14px;
+        }
+        .flavor-card .flavor-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+            margin-top: 14px;
+        }
+        .flavor-card.garden .flavor-label { color: #9e4a4a; }
+        .flavor-card.wild .flavor-label { color: rgba(255,255,255,0.6); }
+        .flavor-card .flavor-detail {
+            font-size: 12.5px;
+        }
+        @media (max-width: 700px) {
+            .flavor-cards { grid-template-columns: 1fr; }
+        }
+
+        /* ---- LIGHTBOX ---- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            cursor: zoom-out;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            animation: lbFadeIn 0.2s ease;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: lbZoomIn 0.25s ease;
+        }
+        @keyframes lbFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes lbZoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Metrics: pop on hover */
+        .metric {
+            transition: transform 0.2s ease;
+        }
+        .metric:hover {
+            transform: scale(1.05);
+        }
+        .metric .number {
+            transition: transform 0.2s ease;
+        }
+        .metric:hover .number {
+            transform: scale(1.08);
+        }
+
+        /* Section labels: gradient underline on hover */
+        .section-label {
+            display: inline-block;
+            position: relative;
+        }
+        .section-label::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+        .section:hover .section-label::after {
+            width: 100%;
+        }
+
+        /* Tags: slight bounce on hover */
+        .tag {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+        }
+        .tag:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* Detail boxes: left border accent reveal on hover */
+        .detail-box {
+            transition: border-left 0.2s ease, transform 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        .detail-box:hover {
+            transform: translateX(2px);
+        }
+        .detail-box.blue-bg:hover { border-left-color: var(--accent); }
+        .detail-box.green-bg:hover { border-left-color: var(--green); }
+        .detail-box.teal-bg:hover { border-left-color: var(--teal); }
+        .detail-box.purple-bg:hover { border-left-color: var(--purple); }
+        .detail-box.orange-bg:hover { border-left-color: var(--orange); }
+
+        /* Press pills: hover lift */
+        .press-row a:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Sidebar links: smooth slide-in */
+        .sidebar-link {
+            transition: all 0.2s ease, padding-left 0.2s ease;
+        }
+        .sidebar-link:hover {
+            padding-left: 16px;
+        }
+
+        /* Learnings card: subtle left-border pulse on hover */
+        .learnings {
+            transition: border-left-width 0.2s ease, padding-left 0.2s ease;
+        }
+        .learnings:hover {
+            border-left-width: 5px;
+            padding-left: 22px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<div class="hero" id="top">
+    <div class="hero-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    <div class="hero-inner">
+        <div class="tagline">Product Marketing <span class="dot" style="background:#f59e0b"></span> Commercial Strategy <span class="dot" style="background:#ec4899"></span> GTM & Partnerships</div>
+        <h1>Julia C. Neary</h1>
+        <div class="accent-bar"></div>
+        <p class="subtitle">
+            Former founder and first commercial hire at Bowery Farming. Energized by turning products people have heard of into solutions they use every day. I connect product to revenue through positioning, packaging, launch, partnerships, and enablement.
+        </p>
+    </div>
+</div>
+
+<!-- ==================== MOBILE NAV ==================== -->
+<div class="mobile-nav">
+    <div class="mobile-nav-inner">
+        <a href="#positioning">Positioning & Messaging</a>
+        <a href="#innovation">Innovation</a>
+        <a href="#gtm">Go-to-Market</a>
+        <a href="#commercial">Commercial Strategy</a>
+    </div>
+</div>
+
+<!-- ==================== PAGE LAYOUT ==================== -->
+<div class="page-layout">
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar">
+        <nav class="sidebar-inner">
+            <a href="#top" class="sidebar-name">Julia C. Neary</a>
+            <div class="sidebar-section">
+                <a href="#positioning" class="sidebar-section-label s1">01 &mdash; Positioning & Messaging</a>
+                <a href="#mammoth" class="sidebar-link s1" data-section="positioning">Mammoth</a>
+                <a href="#strawberry-pos" class="sidebar-link s1" data-section="positioning">Berry Duo</a>
+                <a href="#spring-mix" class="sidebar-link s1" data-section="positioning">Spring Mix</a>
+            </div>
+            <div class="sidebar-section">
+                <a href="#innovation" class="sidebar-section-label s2">02 &mdash; Innovation</a>
+                <a href="#fs-platform" class="sidebar-link s2" data-section="innovation">Farmer's Selection</a>
+                <a href="#salad-kits" class="sidebar-link s2" data-section="innovation">Salad Kits</a>
+            </div>
+            <div class="sidebar-section">
+                <a href="#gtm" class="sidebar-section-label s3">03 &mdash; Go-to-Market</a>
+                <a href="#strawberry-gtm" class="sidebar-link s3" data-section="gtm">Berries</a>
+                <a href="#fs-launches" class="sidebar-link s3" data-section="gtm">Mustard Frills & Baby Rabe</a>
+                <a href="#crispy-leaf" class="sidebar-link s3" data-section="gtm">Crispy Leaf</a>
+            </div>
+            <div class="sidebar-section">
+                <a href="#commercial" class="sidebar-section-label s4">04 &mdash; Commercial Strategy</a>
+                <a href="#tfd-renewal" class="sidebar-link s4" data-section="commercial">TFD Renewal & Expansion</a>
+                <a href="#product-channel" class="sidebar-link s4" data-section="commercial">Product & Channel Architecture</a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="main-content">
+
+<!-- ====================================================== -->
+<!-- SECTION 1: BRAND & PRODUCT POSITIONING                  -->
+<!-- ====================================================== -->
+<div class="section" id="positioning">
+    <div class="section-label blue">01</div>
+    <h2>Positioning & Messaging</h2>
+
+    <!-- MAMMOTH -->
+    <div class="project" id="mammoth">
+        <div class="project-header">
+            <h3>Mammoth &mdash; AI-Ops Positioning & Sales Narrative</h3>
+            <div class="project-meta">Mammoth &nbsp;&middot;&nbsp; Co-founder &nbsp;&middot;&nbsp; 2022&ndash;present &nbsp;&middot;&nbsp; Positioning an early-stage AI platform against enterprise incumbents with one anchor customer and no brand</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag positioning">positioning</span>
+            <span class="tag competitive">competitive analysis</span>
+            <span class="tag sales-enablement">sales narrative</span>
+        </div>
+        <div class="project-body">
+
+            <!-- Challenge: standalone, no image -->
+            <div class="detail-grid">
+                <div class="detail-box blue-bg" style="grid-column: 1 / -1;">
+                    <h4>The Challenge</h4>
+                    <ul>
+                        <li>$100B supply chain SaaS market dominated by legacy ERPs (SAP, Netsuite, Odoo) that are slow to deploy and poorly suited for mid-market CPG</li>
+                        <li>Teams still running procurement, reconciliation, and supplier management in spreadsheets and email &mdash; manual processes costing CPGs $800B/year</li>
+                        <li>Needed to position an early-stage AI product against entrenched incumbents and well-funded point solutions &mdash; without a brand, without a category, and with one anchor customer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Positioning + Product Architecture: side-by-side, mapped to images below -->
+            <div class="detail-grid">
+                <div class="detail-box blue-bg">
+                    <h4>The Positioning</h4>
+                    <ul>
+                        <li>Framed Mammoth as the <strong>"intelligent layer between spreadsheets and ERP"</strong> &mdash; not replacing systems of record, but making them useful</li>
+                        <li>Led with the AI wedge: domain-specific LLMs that extract, unify, and act on fragmented supply chain data to create a single source of truth</li>
+                        <li>Competitive 2x2: positioned Mammoth as uniquely both "easy to use" and "highly configurable" vs. point systems, planning tools, BI tools, and ERPs</li>
+                    </ul>
+                </div>
+                <div class="detail-box blue-bg">
+                    <h4>Messaging Architecture</h4>
+                    <ul>
+                        <li><strong>Problem narrative:</strong> supply chains are volatile, data lives in 10+ systems, and ops teams are stuck in reactive mode</li>
+                        <li><strong>Solution frame:</strong> AI that deploys in weeks (not months), automates the planning lifecycle, and gets smarter with each customer</li>
+                        <li><strong>Proof points:</strong> $500K cost savings, 90% time reduction, 400% NRR, $1M+ pipeline &mdash; all from a single anchor customer in 12 months</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row single">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/Mammoth Pitch Deck - External (1).png" alt="Mammoth product architecture"></div>
+                    <div class="image-caption">Product architecture: domain-specific LLMs creating a single source of truth for operations and finance</div>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/Mammoth Pitch Deck - External (3).png" alt="Mammoth traction and results"></div>
+                    <div class="image-caption">Traction: $500K cost savings, 400% NRR, 90% time saved, $1M+ pipeline</div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/Mammoth Pitch Deck - External (2).png" alt="Competitive landscape"></div>
+                    <div class="image-caption">Competitive 2x2: "easy to use" and "highly configurable" vs. ERPs, point solutions, and planning tools</div>
+                </div>
+            </div>
+
+            <div class="press-row">
+                <span class="press-label">Press:</span>
+                <a href="https://coresight.com/research/groceryshop-2023-shark-reef-startup-pitch-competition-preview/" target="_blank">Coresight &middot; Groceryshop Shark Reef</a>
+                <a href="https://progressivegrocer.com/tech-startups-taking-groceryshop-stage-pitch-competition" target="_blank">Progressive Grocer</a>
+            </div>
+
+            <div class="learnings">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li>The strongest positioning came from understanding that our buyers weren't looking for "AI" &mdash; they were looking for relief from broken workflows. Leading with the pain (not the tech) and proving ROI in the first month was what closed deals. The AI story worked best as the reason to believe, not the headline.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- STRAWBERRY POSITIONING -->
+    <div class="project" id="strawberry-pos">
+        <div class="project-header">
+            <h3>Berry Duo &mdash; Cultivar-Forward Brand Positioning</h3>
+            <div class="project-meta">Bowery Farming &nbsp;&middot;&nbsp; 2022 &nbsp;&middot;&nbsp; First-ever indoor vertical farm strawberry at retail</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag positioning">positioning</span>
+            <span class="tag consumer-insight">consumer insight</span>
+            <span class="tag category">category creation</span>
+        </div>
+        <div class="project-body">
+
+            <div class="detail-grid">
+                <div class="detail-box blue-bg">
+                    <h4>The Challenge</h4>
+                    <ul>
+                        <li>$8B berry category &mdash; massive TAM, but strawberries look and feel similar across brands at the shelf</li>
+                        <li>Needed to justify a premium price point when the product was physically similar to conventional berries</li>
+                        <li>Traditional produce marketing leads with "organic" or "local" &mdash; neither was Bowery's actual differentiator</li>
+                    </ul>
+                </div>
+                <div class="detail-box blue-bg">
+                    <h4>The Positioning</h4>
+                    <ul>
+                        <li>Created a <strong>cultivar-forward</strong> strategy: rather than "indoor-grown strawberries," introduced Garden Berry and Wild Berry as distinct flavor experiences with origin stories</li>
+                        <li><strong>Garden Berry:</strong> "quintessential summer sweetness" &mdash; familiar, nostalgic, approachable</li>
+                        <li><strong>Wild Berry:</strong> "a rollercoaster of flavor" &mdash; complex, tart, adventurous</li>
+                        <li>Premium packaging with flavor stories and QR microsite linking to cultivar content</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/image5.png" alt="Strawberry hero creative"></div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/image16.png" alt="Garden and Wild berry cultivars"></div>
+                </div>
+            </div>
+
+            <div class="flavor-cards">
+                <div class="flavor-card garden">
+                    <h5>The Garden Berry</h5>
+                    <p>Ah, the Garden Berry. Quintessential summer taste in one gorgeous, powerfully packed berry. Perfectly balanced between citrusy and sweet, this juicy yet firm ruby red beauty will steal your heart and woo your taste buds all year long.</p>
+                    <div class="flavor-label">Best Paired With</div>
+                    <div class="flavor-detail">Light, delicate foods. Fresh whipped cream. A simple arugula salad.</div>
+                    <div class="flavor-label">Tasting Notes</div>
+                    <div class="flavor-detail">Balanced & zesty. Stone fruit. Black currant.</div>
+                </div>
+                <div class="flavor-card wild">
+                    <h5>The Wild Berry</h5>
+                    <p>You've never tasted anything like the Wild Berry before. And that's because we quite literally found a way to grow something entirely new. This petite, soft berry may be small in stature, but don't let that fool you. It packs a ton of bright, floral flavor that is as delightful as the day is long.</p>
+                    <div class="flavor-label">Best Paired With</div>
+                    <div class="flavor-detail">Dark, rich foods. Hard cheddar and crackers. Dark chocolate with sea salt.</div>
+                    <div class="flavor-label">Tasting Notes</div>
+                    <div class="flavor-detail">Concentrated & peony. Tropical fruit. Concord grape.</div>
+                </div>
+            </div>
+
+            <div class="learnings">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li>Cultivar-forward positioning turned a product that looked like any other strawberry into something consumers sought out by name &mdash; and it gave us a messaging framework we could repeat with every new variety.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SPRING MIX -->
+    <div class="project" id="spring-mix">
+        <div class="project-header">
+            <h3>Spring Mix &mdash; Premiumizing a Commodity</h3>
+            <div class="project-meta">Bowery Farming &nbsp;&middot;&nbsp; 2021 &nbsp;&middot;&nbsp; Core line expansion into the $500M+ spring mix subcategory</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag positioning">positioning</span>
+            <span class="tag consumer-insight">consumer insight</span>
+            <span class="tag product-strategy">product strategy</span>
+        </div>
+        <div class="project-body">
+
+            <div class="detail-grid">
+                <div class="detail-box blue-bg">
+                    <h4>The Challenge</h4>
+                    <ul>
+                        <li>Spring mix is the most commoditized leafy green &mdash; a $500M+ subcategory where consumers see brands as interchangeable</li>
+                        <li>Bowery was known for specialty greens, but spring mix is the volume play &mdash; the gateway product for mainstream shoppers</li>
+                        <li>Needed messaging that preserved Bowery's premium identity while expanding into everyday occasions, competing against private label at lower price points</li>
+                    </ul>
+                </div>
+                <div class="detail-box blue-bg">
+                    <h4>The Positioning</h4>
+                    <ul>
+                        <li>Reframed the category from "bag of mixed greens" to <strong>"Sensory Party"</strong> &mdash; a curated mix of textures and flavors designed for how people actually eat</li>
+                        <li>Launched new 8oz family size to expand from specialty single-serve into everyday meal occasions: salads, sandwiches, smoothies, cooking</li>
+                        <li>Led with freshness and taste as differentiators consumers could feel &mdash; longer shelf life, more vibrant flavor, no wilting at the bottom of the bag</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row single">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/INNOVATION (1).png" alt="Spring Mix positioning"></div>
+                    <div class="image-caption">Spring Mix positioning: "Sensory Party" messaging with new 8oz family size &mdash; premiumizing a commodity through occasion-based storytelling</div>
+                </div>
+            </div>
+
+            <div class="learnings">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li>We premiumized spring mix by anchoring the messaging in how people actually use it &mdash; weeknight salads, smoothies, meal prep. Making the premium positioning feel like part of everyday life was more effective than trying to justify a higher price point.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- ====================================================== -->
+<!-- SECTION 2: PRODUCT INNOVATION & PLATFORM BUILDING       -->
+<!-- ====================================================== -->
+<div class="section" id="innovation">
+    <div class="section-label green">02</div>
+    <h2>Product Innovation & Platform Building</h2>
+
+    <!-- FARMER'S SELECTION PLATFORM (DEEP CASE STUDY) -->
+    <div class="project" id="fs-platform">
+        <div class="project-header">
+            <h3>Farmer's Selection &mdash; Innovation Platform</h3>
+            <div class="project-meta">Bowery Farming &nbsp;&middot;&nbsp; 2021&ndash;2022 &nbsp;&middot;&nbsp; From concept to platform &mdash; building an innovation engine to grow the core</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag platform-building">platform building</span>
+            <span class="tag innovation">innovation</span>
+            <span class="tag product-strategy">product strategy</span>
+            <span class="tag chef-partnership">chef partnership</span>
+        </div>
+        <div class="project-body">
+
+            <!-- STRATEGIC FRAME -->
+            <div class="detail-grid">
+                <div class="detail-box green-bg" style="grid-column: 1 / -1;">
+                    <h4>The Strategic Problem</h4>
+                    <ul>
+                        <li>Bowery's core line (lettuce, spinach, spring mix) was driving volume but competing in commoditized categories with thin margins and low brand differentiation</li>
+                        <li>R&D could grow almost anything &mdash; but there was no framework for deciding what to bring to market, how to position it, or where to sell it</li>
+                        <li>The company needed an innovation engine that could simultaneously build brand heat at the top of the portfolio, open new channels, and prove Bowery's R&D advantage &mdash; without cannibalizing the core business</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="detail-box green-bg">
+                    <h4>The Vision</h4>
+                    <ul>
+                        <li>Built Farmer's Selection as a <strong>platform for "forgotten seeds"</strong> &mdash; heirloom and specialty cultivars that traditional agriculture couldn't reliably grow at scale</li>
+                        <li>Designed to serve 5 strategic objectives: <strong>Consumer</strong> (cultivar-forward flavor), <strong>Product</strong> (showcase R&D), <strong>Channel</strong> (test new retail/foodservice paths), <strong>Business</strong> (premium price tier), <strong>Brand</strong> (establish Bowery as culinary innovator)</li>
+                        <li>Starting lineup: Mustard Frills, Baby Rabe, Chrysanthemum Greens &mdash; each chosen for flavor intensity, visual distinction, and chef appeal</li>
+                        <li>Built a consumer co-creation community ("Creative Experimenters") to test recipes, provide feedback, and validate cultivars before launch &mdash; turning consumers into the product development loop</li>
+                    </ul>
+                </div>
+                <div class="detail-box green-bg">
+                    <h4>Two-Pronged Platform Strategy</h4>
+                    <ul>
+                        <li><strong>Evergreen platform:</strong> permanent SKUs (e.g., Mustard Frills) that differentiate in traditional retail with logistical ease</li>
+                        <li><strong>Limited Edition platform:</strong> seasonal/experimental cultivars (e.g., Chrys Greens) that test + learn on product and channel strategy</li>
+                        <li>This architecture let us run fast experiments on the Limited Edition side while building reliable revenue on the Evergreen side</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/Q1 Farmer's Selection Recap + Vision -- for PD meeting 4_6.png" alt="Why Farmer's Selection"></div>
+                    <div class="image-caption">"Why Farmer's Selection?" &mdash; strategic rationale across Consumer, Product, Channel, Business, and Brand objectives</div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/2Q22_Farmer's Selection_Chrys Greens GTM_[I].png" alt="Two-pronged platform"></div>
+                    <div class="image-caption">Two-pronged platform: Evergreen (permanent, scalable) vs. Limited Edition (experimental, test-and-learn)</div>
+                </div>
+            </div>
+
+            <!-- Phased GTM -->
+            <div class="detail-grid">
+                <div class="detail-box green-bg" style="grid-column: 1 / -1;">
+                    <h4>Phased Channel Strategy</h4>
+                    <ul>
+                        <li><strong>Phase 1 &mdash; Hype & Intrigue:</strong> launch via culinary partnerships (Bonnie's BK / Calvin Eng, Mimi Cheng's) to build credibility and buzz</li>
+                        <li><strong>Phase 2 &mdash; Commercialize:</strong> buzzy/alt retail (Neighborhood Goods, Pearl River Mart, Umamicart) and CPG cross-merchandising (Omsom, Bachan's BBQ)</li>
+                        <li><strong>Phase 3 &mdash; Scale:</strong> traditional retail + ecomm (Whole Foods, FreshDirect) for SKUs that meet commercial viability criteria</li>
+                        <li><strong>Test case &mdash; Chrysanthemum Greens:</strong> Limited Edition cultivar launched with Calvin Eng (Bonnie's BK) as a culinary credentialing partner, anchored at Umamicart, with recipe amplification driving the halo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/2Q22_Farmer's Selection_Chrys Greens GTM_[I] (1).png" alt="Rollout approach"></div>
+                    <div class="image-caption">3-phase channel strategy: Hype (culinary partnerships) &rarr; Commercialize (buzzy retail + CPG) &rarr; Scale (traditional retail)</div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/image39.png" alt="Product line architecture"></div>
+                    <div class="image-caption">Product architecture pyramid: Core Staples &rarr; Flavorful Blends &rarr; Signature Greens &rarr; Herbs & Innovation &mdash; FS at the top driving brand heat</div>
+                </div>
+            </div>
+
+            <div class="metrics-bar">
+                <div class="metric">
+                    <div class="number green">3x</div>
+                    <div class="label">Brand awareness</div>
+                </div>
+                <div class="metric">
+                    <div class="number green">149</div>
+                    <div class="label">Media placements</div>
+                </div>
+                <div class="metric">
+                    <div class="number green">#1</div>
+                    <div class="label">NPS in category</div>
+                </div>
+            </div>
+
+            <div class="learnings green-border">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li>The real value of an innovation platform isn't the individual products &mdash; it's what they do for the core business. Farmer's Selection gave us a reason to talk to consumers about flavor, quality, and provenance in a way that elevated the entire Bowery portfolio. The cultivars were the hook; the brand heat flowed back to lettuce and spinach.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SALAD KITS -->
+    <div class="project" id="salad-kits">
+        <div class="project-header">
+            <h3>Salad Kits &mdash; Value-Added Product Innovation</h3>
+            <div class="project-meta">Bowery Farming &nbsp;&middot;&nbsp; 2022 &nbsp;&middot;&nbsp; First value-added product: complete salad kits with dressing and toppings</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag innovation">innovation</span>
+            <span class="tag consumer-insight">consumer insight</span>
+            <span class="tag product-strategy">product strategy</span>
+        </div>
+        <div class="project-body">
+
+            <div class="detail-grid">
+                <div class="detail-box green-bg">
+                    <h4>The Strategy</h4>
+                    <ul>
+                        <li>Moved Bowery from commodity greens into the higher-margin prepared/value-added category &mdash; a strategic shift from ingredient to meal solution</li>
+                        <li>Developed Bowery's first complete salad kits: curated greens, dressing, and toppings in a single package</li>
+                        <li>Consumer testing validated the concept: 4.6/5.0 rating and 92% would recommend</li>
+                    </ul>
+                </div>
+                <div class="detail-box green-bg">
+                    <h4>Enablement & Sell-In</h4>
+                    <ul>
+                        <li>Positioned kits as a trade-up opportunity within the existing Bowery shelf set, not a category expansion requiring new space</li>
+                        <li>Sales tools anchored in consumer data: preference testing, margin projections, and competitive category analysis</li>
+                        <li>Pricing strategy: premium to private label salad kits, but anchored to Bowery's existing price tier &mdash; reducing sticker shock</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row single">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/INNOVATION (3).png" alt="Salad kits innovation"></div>
+                    <div class="image-caption">Salad Kits: 4.6/5.0 consumer rating, 92% would recommend &mdash; Bowery's first value-added product line</div>
+                </div>
+            </div>
+
+            <div class="metrics-bar">
+                <div class="metric">
+                    <div class="number green">4.6/5</div>
+                    <div class="label">Consumer rating</div>
+                </div>
+                <div class="metric">
+                    <div class="number green">92%</div>
+                    <div class="label">Would recommend</div>
+                </div>
+                <div class="metric">
+                    <div class="number green">$2.7B</div>
+                    <div class="label">Salad TAM</div>
+                </div>
+            </div>
+
+            <div class="learnings green-border">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li>Salad kits turned our core greens into a new product category &mdash; creating a trade-up path for existing customers and opening a $2.7B addressable market. Paired with Farmer's Selection at the top and staples at the base, it completed a portfolio that could serve every occasion and price point.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ====================================================== -->
+<!-- SECTION 3: GO-TO-MARKET & LAUNCHES                      -->
+<!-- ====================================================== -->
+<div class="section" id="gtm">
+    <div class="section-label teal">03</div>
+    <h2>Go-to-Market & Launches</h2>
+
+    <!-- STRAWBERRY 360 GTM -->
+    <div class="project" id="strawberry-gtm">
+        <div class="project-header">
+            <h3>Berries &mdash; Brand-Led 360 GTM</h3>
+            <div class="project-meta">Bowery Farming &nbsp;&middot;&nbsp; 2022 &nbsp;&middot;&nbsp; 3-phase rollout with Jos&eacute; Andr&eacute;s partnership</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag gtm">go-to-market</span>
+            <span class="tag campaign-360">360 campaign</span>
+            <span class="tag campaign-360">360 activation</span>
+            <span class="tag press">earned media</span>
+        </div>
+        <div class="project-body">
+
+            <div class="detail-grid">
+                <div class="detail-box teal-bg">
+                    <h4>Launch Strategy</h4>
+                    <ul>
+                        <li>3-phase rollout: <strong>Credential</strong> (foodservice seeding at Eataly, Eleven Madison) &rarr; <strong>Reach</strong> (retail launch + press) &rarr; <strong>Scale</strong> (banner expansion with A/B-tested pricing)</li>
+                        <li>Built the product expansion framework from scratch &mdash; evaluated every potential crop against consumer preference, operational feasibility, and revenue potential</li>
+                        <li>Price sensitivity tested at each phase &mdash; single outlet &rarr; banner &rarr; region</li>
+                    </ul>
+                </div>
+                <div class="detail-box teal-bg">
+                    <h4>Partnerships & Cultural Activation</h4>
+                    <ul>
+                        <li><strong>Jos&eacute; Andr&eacute;s</strong> came on as investor, advisor, and culinary partner &mdash; highest-profile endorsement of Bowery's mission</li>
+                        <li><strong>Restaurant:</strong> strawberries placed at Andr&eacute;s' DC restaurants (Le&ntilde;a, Spanish Diner) for culinary credentialing</li>
+                        <li><strong>Experiential:</strong> co-marketing with Talea Brewery, Neighborhood Goods for launch activations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/image12.png" alt="Strawberry GTM Strategy"></div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/image8.png" alt="Launch plan timeline"></div>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/image6.png" alt="Talea Brewery partnership"></div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap contain"><img src="portfolio-images/image38.png" alt="NYT strawberry coverage"></div>
+                    <div class="image-caption"><a href="https://www.nytimes.com/2022/03/14/dining/bowery-strawberries.html" target="_blank" style="color: var(--teal); text-decoration: none; font-weight: 500;">New York Times (Florence Fabricant)</a>: earned media validating the cultivar-forward positioning strategy</div>
+                </div>
+            </div>
+
+            <div class="metrics-bar">
+                <div class="metric">
+                    <div class="number teal">NYT + CNBC</div>
+                    <div class="label">Tier 1 press</div>
+                </div>
+                <div class="metric">
+                    <div class="number teal">3x</div>
+                    <div class="label">Oversubscribed</div>
+                </div>
+            </div>
+
+            <div class="press-row s3-press">
+                <span class="press-label">Press:</span>
+                <a href="https://www.nytimes.com/2022/03/14/dining/bowery-strawberries.html" target="_blank">New York Times</a>
+                <a href="https://www.bloomberg.com/news/videos/2022-03-14/vertical-farm-expands-from-greens-to-better-berries-video" target="_blank">Bloomberg</a>
+                <a href="https://www.cnbc.com/2022/03/15/bowerys-vertical-farming-strawberries-go-on-sale-in-new-york-.html" target="_blank">CNBC</a>
+                <a href="https://techcrunch.com/2022/03/15/bowery-is-selling-vertically-farmed-strawberries-in-limited-quantities/" target="_blank">TechCrunch</a>
+                <a href="https://www.crainsnewyork.com/technology/high-tech-strawberries-arrive-markets-new-york" target="_blank">Crain's</a>
+            </div>
+
+            <div class="learnings teal-border">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li><strong>Narrative success &ne; business success.</strong> The launch generated strong press and consumer demand, but yield variability made unit economics fragile at premium pricing. The brand story wrote itself &mdash; the harder problem was making the economics work. A partnership model (co-packing, licensing) could have enabled scale without bearing the full cost structure.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FARMER'S SELECTION LAUNCHES -->
+    <div class="project" id="fs-launches">
+        <div class="project-header">
+            <h3>Farmer's Selection &mdash; Mustard Frills & Baby Rabe Launches</h3>
+            <div class="project-meta">Bowery Farming &nbsp;&middot;&nbsp; 2021&ndash;2022 &nbsp;&middot;&nbsp; Chef-driven cultivar launches with influencer + culinary activation</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag gtm">go-to-market</span>
+            <span class="tag campaign-360">360 activation</span>
+            <span class="tag press">influencer + earned media</span>
+        </div>
+        <div class="project-body">
+
+            <div class="detail-grid">
+                <div class="detail-box teal-bg">
+                    <h4>Mustard Frills Launch</h4>
+                    <ul>
+                        <li>First Farmer's Selection cultivar to go to market &mdash; a specialty mustard green with bold wasabi-like flavor</li>
+                        <li>Influencer partners: <strong>Eric Adjepong</strong> (Top Chef), <strong>Dan Pelosi</strong>, <strong>Kia Damon</strong>, <strong>Gena Hamshaw</strong> &mdash; each structured as a content engine: recipes, social, in-store events</li>
+                    </ul>
+                </div>
+                <div class="detail-box teal-bg">
+                    <h4>Baby Rabe Launch</h4>
+                    <ul>
+                        <li>Campaign: <strong>"Our Favorite Fall Layer"</strong> &mdash; 3 objectives: communicate flavor, overcome barriers to trial, ladder to the creativity and community of the Bowery brand</li>
+                        <li><strong>Dan Pelosi</strong> + <strong>Renato Poliafito</strong> (Ciao Gloria) popup activation &mdash; experiential retail moment that converted social buzz into sell-through</li>
+                        <li>Pre-launch validation: <strong>78% purchase intent</strong> from 330-person consumer panel confirmed the positioning before we spent on activation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row single">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/Q1 Farmer's Selection Recap + Vision -- for PD meeting 4_6 (2).png" alt="Marketing results"></div>
+                    <div class="image-caption">Mustard Frills marketing results: 60.5M earned impressions, +43% engagement rate vs. benchmark</div>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/3Q21_1Q22 Farmer's Selection Materials (for Innovation meeting 8_13).png" alt="Baby Rabe launch"></div>
+                    <div class="image-caption">Baby Rabe 360 launch: Dan Pelosi + Renato Poliafito (Ciao Gloria) influencer and menu collaboration</div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/3Q21_1Q22 Farmer's Selection Materials (for Innovation meeting 8_13) (1).png" alt="Baby Rabe visual assets"></div>
+                </div>
+            </div>
+
+            <div class="image-row single">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/Baby Rabe Creative Concepts R2.png" alt="Baby Rabe creative brief"></div>
+                    <div class="image-caption">Baby Rabe creative brief: "Our Favorite Fall Layer" &mdash; communicate flavor, overcome trial barriers, ladder to brand community</div>
+                </div>
+            </div>
+
+            <div class="metrics-bar">
+                <div class="metric">
+                    <div class="number teal">60.5M</div>
+                    <div class="label">Earned impressions</div>
+                </div>
+                <div class="metric">
+                    <div class="number teal">+43%</div>
+                    <div class="label">Engagement vs. benchmark</div>
+                </div>
+                <div class="metric">
+                    <div class="number teal">78%</div>
+                    <div class="label">Purchase intent (Baby Rabe)</div>
+                </div>
+                <div class="metric">
+                    <div class="number teal">149</div>
+                    <div class="label">Media placements</div>
+                </div>
+            </div>
+
+            <div class="press-row s3-press">
+                <span class="press-label">Press:</span>
+                <a href="https://www.bravotv.com/top-chef/style-living/eric-adjepong-is-now-culinary-advisor-at-bowery-farming" target="_blank">Bravo &middot; Eric Adjepong</a>
+                <a href="https://abcnews.go.com/GMA/GMA3/video/holiday-dish-81878526" target="_blank">ABC News GMA</a>
+                <a href="https://www.adweek.com/brand-marketing/when-life-gets-you-down-these-veggies-can-pump-you-back-up/" target="_blank">Adweek</a>
+                <a href="https://shortyawards.com/7th-impact/bowery-farming-earth-month-campaign-rewild-the-land" target="_blank">Shorty Awards</a>
+            </div>
+
+            <div class="learnings teal-border">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li>The most effective launches surround sound consumers and pop up in unexpected places. Mustard Frills and Baby Rabe worked because we built a 360 activation model: culinary credibility (Eric Adjepong, Dan Pelosi), experiential retail (Ciao Gloria popup), earned media (Bravo, GMA, Adweek), and community (brand ambassadors). Each touchpoint fed the next.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CRISPY LEAF -->
+    <div class="project" id="crispy-leaf">
+        <div class="project-header">
+            <h3>Crispy Leaf &mdash; Channel-Led Launch</h3>
+            <div class="project-meta">Bowery Farming &nbsp;&middot;&nbsp; 2020 &nbsp;&middot;&nbsp; New SKU launched through retailer reset windows with sales enablement built for buyer conversations</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag gtm">go-to-market</span>
+            <span class="tag category">channel strategy</span>
+            <span class="tag sales-enablement">sales enablement</span>
+        </div>
+        <div class="project-body">
+
+            <div class="detail-grid">
+                <div class="detail-box teal-bg">
+                    <h4>Launch Strategy</h4>
+                    <ul>
+                        <li>Channel-led: timed launch to retailer reset windows and built the sell-in story around what buyers care about &mdash; yield, shelf-life, and margin contribution</li>
+                        <li>Compressed timeline by 4 weeks through a stage-gate process that kept cross-functional teams aligned without skipping gates</li>
+                        <li>Category-forward strategy: positioned Crispy Leaf as a signal that Bowery could deliver reliable, scalable innovation on the retailer's timeline</li>
+                    </ul>
+                </div>
+                <div class="detail-box teal-bg">
+                    <h4>Enablement & Activation</h4>
+                    <ul>
+                        <li>Educated sales team to lead with the operational story (yield, shelf-life) in buyer meetings, not just the brand story</li>
+                        <li>Developed SKU shelf sets, scorecards, and category collateral for top-to-top retailer conversations</li>
+                        <li>Category-forward fresh wall signage designed to reframe the produce section around Bowery's vision</li>
+                        <li>Repeatable brand partnership playbook used across retail activations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap contain"><img src="portfolio-images/crispy-leaf-packaging-cropped.png" alt="Crispy Leaf packaging"></div>
+                    <div class="image-caption">Product packaging: "Zero Pesticides" &mdash; indoor grown, no need to wash, fresher longer</div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/image40.png" alt="Category creation and retail signage"></div>
+                    <div class="image-caption">Category creation: fresh wall signage and retail strategy designed to elevate the entire indoor-grown set</div>
+                </div>
+            </div>
+
+            <div class="metrics-bar">
+                <div class="metric">
+                    <div class="number teal">#2</div>
+                    <div class="label">SKU in portfolio</div>
+                </div>
+                <div class="metric">
+                    <div class="number teal">500K+</div>
+                    <div class="label">Units annually</div>
+                </div>
+                <div class="metric">
+                    <div class="number teal">$1.2M+</div>
+                    <div class="label">Annual revenue</div>
+                </div>
+                <div class="metric">
+                    <div class="number teal">+5pt</div>
+                    <div class="label">Margin lift</div>
+                </div>
+            </div>
+
+            <div class="press-row s3-press">
+                <span class="press-label">Press:</span>
+                <a href="https://www.nytimes.com/2020/09/14/dining/crispy-leaf-lettuce.html" target="_blank">New York Times</a>
+                <a href="https://progressivegrocer.com/bowery-farming-crispy-leaf-lettuce" target="_blank">Progressive Grocer</a>
+                <a href="https://www.thepacker.com/markets/marketing-news/retail/bowery-farming-introduces-crispy-leaf-lettuce" target="_blank">The Packer</a>
+                <a href="https://www.nosh.com/food-wire/2020/bowery-farming-introduces-crispy-leaf-lettuce/" target="_blank">Nosh</a>
+            </div>
+
+            <div class="learnings teal-border">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li>Crispy Leaf worked because the product made everyone's job easier &mdash; R&D had a high-yield cultivar, retailers got a margin contributor, and consumers kept coming back. When a product solves problems for every stakeholder, it sells itself. The SKU became a platform for future expansion into mixes, kits, and meal solutions.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ====================================================== -->
+<!-- SECTION 4: COMMERCIAL STRATEGY & SALES ENABLEMENT       -->
+<!-- ====================================================== -->
+<div class="section" id="commercial">
+    <div class="section-label purple">04</div>
+    <h2>Commercial Strategy & Sales Enablement</h2>
+
+    <!-- TFD RENEWAL -->
+    <div class="project" id="tfd-renewal">
+        <div class="project-header">
+            <h3>The Farmer's Dog &mdash; Renewal & Expansion</h3>
+            <div class="project-meta">Mammoth &nbsp;&middot;&nbsp; 2025 &nbsp;&middot;&nbsp; Pilot &rarr; 3-year renewal at 5x original contract value</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag sales-enablement">sales enablement</span>
+            <span class="tag pricing">pricing & packaging</span>
+            <span class="tag competitive">value-based selling</span>
+        </div>
+        <div class="project-body">
+
+            <div class="detail-grid">
+                <div class="detail-box purple-bg">
+                    <h4>Context</h4>
+                    <ul>
+                        <li>The Farmer's Dog was Mammoth's anchor customer &mdash; a high-growth DTC pet food brand ($50M+ rev) running supply chain ops in spreadsheets</li>
+                        <li>Started with a $1K/month pilot on cost reconciliation. Over 12 months, expanded into order management, contract tracking, inventory optimization, and supplier compliance</li>
+                        <li>Challenge: justify 5x+ price increase at renewal by quantifying the full value delivered &mdash; not just the original use case</li>
+                    </ul>
+                </div>
+                <div class="detail-box purple-bg">
+                    <h4>Approach</h4>
+                    <ul>
+                        <li>Built a comprehensive business case mapping every module to measurable ROI &mdash; cost savings, time saved, compliance improvement, and inventory opportunity</li>
+                        <li>Structured the pricing conversation around value tiers: showed where TFD's actual usage fell vs. standard packaging, then presented options at three price points</li>
+                        <li>Used a "before/after" narrative &mdash; not feature-by-feature, but workflow-by-workflow &mdash; to make value visceral for operations and finance stakeholders</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/TFD + Mammoth Renewal (2025).png" alt="TFD business case"></div>
+                    <div class="image-caption">Business case: $500K cost savings, $30K+ time saved, $6.6M compliance value, $5.3M inventory opportunity</div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/TFD + Mammoth Renewal (2025) (1).png" alt="TFD before/after"></div>
+                    <div class="image-caption">Before/After: workflow-by-workflow transformation &mdash; from manual reconciliation to automated 3-way match</div>
+                </div>
+            </div>
+
+            <div class="metrics-bar">
+                <div class="metric">
+                    <div class="number purple">$500K</div>
+                    <div class="label">Annual cost savings</div>
+                </div>
+                <div class="metric">
+                    <div class="number purple">90%</div>
+                    <div class="label">Time reduction</div>
+                </div>
+                <div class="metric">
+                    <div class="number purple">15%</div>
+                    <div class="label">Compliance improvement</div>
+                </div>
+                <div class="metric">
+                    <div class="number purple">5x</div>
+                    <div class="label">Contract expansion</div>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/TFD + Mammoth Renewal (2025) (2).png" alt="Cost savings chart"></div>
+                    <div class="image-caption">Cost savings from reconciliation: $33K/month average, trending toward $50K+/month through EOY</div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/TFD + Mammoth Renewal (2025) (3).png" alt="Pricing tier walkthrough"></div>
+                    <div class="image-caption">Pricing strategy: showed where TFD usage fell, then structured options to find the right investment level</div>
+                </div>
+            </div>
+
+            <div class="detail-grid">
+                <div class="detail-box warm-bg">
+                    <h4>End-to-End Enablement</h4>
+                    <ul>
+                        <li>Customer discovery, positioning, sales narrative, pilot scoping, success metrics</li>
+                        <li>Figma prototypes and MVP (Sheets &rarr; Retool) built while iterating toward end-state product</li>
+                        <li>Customer ops playbooks &mdash; ran one full month to measure impact before converting</li>
+                        <li>Renewal and pricing assets &mdash; structured options, par value analysis, discount frameworks</li>
+                    </ul>
+                </div>
+                <div class="detail-box warm-bg">
+                    <h4>GTM Architecture</h4>
+                    <ul>
+                        <li><strong>Land:</strong> cost reconciliation as the wedge &mdash; fastest time to value, clearest ROI</li>
+                        <li><strong>Expand:</strong> order management, contracts, inventory, forecasting &mdash; each module unlocks new budget and new stakeholders</li>
+                        <li><strong>Retain:</strong> data network effects create switching costs &mdash; the longer a customer uses Mammoth, the more the system adapts</li>
+                        <li><strong>Pricing:</strong> tiered by modules, users, and data volume ($1K&ndash;$10K+/month), with value-share upside for larger customers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="learnings purple-border">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li><strong>The best sales enablement is customer evidence.</strong> TFD's renewal didn't close because of a polished one-pager &mdash; it closed because I could show exactly how much money Mammoth was saving them, month by month, ingredient by ingredient.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PRODUCT / CHANNEL ARCHITECTURE -->
+    <div class="project" id="product-channel">
+        <div class="project-header">
+            <h3>Product & Channel Architecture</h3>
+            <div class="project-meta">Bowery Farming &nbsp;&middot;&nbsp; 2021&ndash;2022 &nbsp;&middot;&nbsp; Pricing tiers, expansion framework, and portfolio strategy across channels</div>
+        </div>
+        <div class="project-tags">
+            <span class="tag product-strategy">product strategy</span>
+            <span class="tag pricing">pricing & packaging</span>
+            <span class="tag category">category strategy</span>
+        </div>
+        <div class="project-body">
+
+            <div class="detail-grid">
+                <div class="detail-box purple-bg">
+                    <h4>The Framework</h4>
+                    <ul>
+                        <li>Built a tiered product architecture: <strong>Core</strong> (volume plays &mdash; lettuce, spinach), <strong>Signature</strong> (innovation &mdash; salad kits, crispy leaf), <strong>Edge</strong> (R&D-led &mdash; strawberries, herbs), and <strong>Chef/Foodservice</strong></li>
+                        <li>Mapped each tier to specific channels (grocery, club, foodservice) with pricing guardrails and margin targets</li>
+                        <li>Used market sizing to ground the roadmap: $2.7B salad, $1.4B lettuce, $290M herbs &mdash; anchored expansion to real revenue pools</li>
+                    </ul>
+                </div>
+                <div class="detail-box purple-bg">
+                    <h4>Expansion Framework</h4>
+                    <ul>
+                        <li>10-criteria evaluation matrix across four functions: <strong>Commercial</strong> (market size, margin, channel fit, brand impact), <strong>AgScience</strong> (grow capability, yield), <strong>Farm Design</strong> (capital, throughput), <strong>Technology</strong> (automation readiness)</li>
+                        <li>Output: ROI/feasibility 2x2 quadrant that made trade-offs visible to the exec team</li>
+                        <li>Framework survived leadership changes and became the default tool for evaluating new products, formats, and channel opportunities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-row">
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/image14.png" alt="SKU channel matrix"></div>
+                </div>
+                <div class="image-panel">
+                    <div class="img-wrap"><img src="portfolio-images/Product Roadmapping and Category Development_ Commercial Context (May 2021) - 043022 (1).png" alt="Category market sizing"></div>
+                    <div class="image-caption">Market sizing: $2.7B salad TAM with format/size breakdown &mdash; grounding pricing and expansion in real revenue pools</div>
+                </div>
+            </div>
+
+            <div class="learnings purple-border">
+                <h4>Key Insight</h4>
+                <ul>
+                    <li>Launching products successfully isn't just about building a strong campaign &mdash; it's about developing the decision architecture that makes success repeatable. This framework outlasted my time at Bowery because it gave every team a shared language for evaluating new products, formats, and channel opportunities. The value wasn't the first set of answers &mdash; it was that every subsequent decision was faster, more cross-functionally aligned, and built to support scalable innovation.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    </main>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+    <p>Julia C. Neary &nbsp;&middot;&nbsp; <a href="mailto:julia@mammoth.tech">julia@mammoth.tech</a> &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/juliaccohen/" target="_blank">LinkedIn</a></p>
+</div>
+
+<!-- ==================== SCROLL-AWARE SIDEBAR JS ==================== -->
+<script>
+(function() {
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-inner a');
+    const projects = document.querySelectorAll('.project[id]');
+    const sections = document.querySelectorAll('.section[id]');
+
+    if (!projects.length) return;
+
+    // Build map: project id -> sidebar link
+    const linkMap = {};
+    sidebarLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            linkMap[href.substring(1)] = link;
+        }
+    });
+
+    // Build map: section id -> mobile link
+    const mobileLinkMap = {};
+    mobileLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            mobileLinkMap[href.substring(1)] = link;
+        }
+    });
+
+    // Observe projects for sidebar
+    const projectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                const link = linkMap[entry.target.id];
+                if (link) link.classList.add('active');
+            }
+        });
+    }, {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    });
+
+    projects.forEach(project => projectObserver.observe(project));
+
+    // Observe sections for mobile nav
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                mobileLinks.forEach(l => l.classList.remove('active'));
+                const link = mobileLinkMap[entry.target.id];
+                if (link) link.classList.add('active');
+            }
+        });
+    }, {
+        rootMargin: '-10% 0px -70% 0px',
+        threshold: 0
+    });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Smooth scroll for all nav links
+    document.querySelectorAll('.sidebar-name, .sidebar-link, .sidebar-section-label, .mobile-nav-inner a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+})();
+
+// Lightbox: click image to expand
+(function() {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.innerHTML = '<img>';
+    document.body.appendChild(lb);
+    const lbImg = lb.querySelector('img');
+
+    document.querySelectorAll('.image-panel img').forEach(img => {
+        img.addEventListener('click', function() {
+            lbImg.src = this.src;
+            lbImg.alt = this.alt;
+            lb.classList.add('active');
+        });
+    });
+
+    lb.addEventListener('click', () => lb.classList.remove('active'));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') lb.classList.remove('active');
+    });
+})();
+</script>
+
+</body>
+</html>
