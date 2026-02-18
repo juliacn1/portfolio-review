@@ -818,6 +818,22 @@
             .project-header, .project-body, .project-tags { padding-left: 20px; padding-right: 20px; }
             .contrast-row { grid-template-columns: 1fr; gap: 12px; }
             .contrast-vs { padding: 8px 0; text-align: center; }
+
+            /* Mobile image containers: auto height, no cropping */
+            .image-row:not(.single):not(.triple) .img-wrap,
+            .image-row.tall .img-wrap {
+                height: auto;
+            }
+            .image-panel img {
+                object-fit: contain;
+                height: auto;
+                max-height: 300px;
+            }
+            .image-row.single .image-panel img {
+                max-height: 300px;
+            }
+            .flavor-cards { grid-template-columns: 1fr; }
+            .metrics-bar { grid-template-columns: 1fr 1fr; }
         }
 
         /* ---- VISUAL ENERGY ---- */
